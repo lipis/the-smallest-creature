@@ -1,6 +1,5 @@
 application: smallest-creature
 version: release
-
 runtime: python27
 api_version: 1
 threadsafe: true

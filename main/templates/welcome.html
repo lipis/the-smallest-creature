@@ -5,7 +5,7 @@
     <div class="container text-center">
       <img class="cover" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}}">
       <h1>{{config.CONFIG_DB.brand_name}}</h1>
-      <p>Coming soon.. with a new Album!</p>
+      {{config.CONFIG_DB.announcement_html|safe}}
     </div>
   </div>
 # endblock
