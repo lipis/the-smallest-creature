@@ -29,6 +29,8 @@ def error_handler(e):
   if flask.request.path.startswith('/api/'):
     return helpers.handle_error(e)
 
+  if e.code == 404:
+    return flask.redirect(flask.url_for('welcome'))
   return flask.render_template(
       'error.html',
       title='Error %d (%s)!!1' % (e.code, e.name),
