@@ -1,0 +1,65 @@
+# extends 'base.html'
+# import 'macro/forms.html' as forms
+# import 'macro/utils.html' as utils
+
+
+# block content
+  <div class="page-header">
+    <h1>
+      {{utils.back_link('Back', 'song_list')}}
+      {{title}}
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered table-striped">
+        <tbody>
+          <tr>
+            <th class="text-nowrap col-xs-1">Name</th>
+            <td class="col-xs-11">{{song_db.name or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Url Name</th>
+            <td class="col-xs-11">{{song_db.url_name or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Index</th>
+            <td class="col-xs-11">{{song_db.index or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Year</th>
+            <td class="col-xs-11">{{song_db.year or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">SoundCloud ID</th>
+            <td class="col-xs-11">{{song_db.sound_cloud_id or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">YouTube ID</th>
+            <td class="col-xs-11">{{song_db.youtube_id or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Imgur ID</th>
+            <td class="col-xs-11">{{song_db.imgur_id or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Tags</th>
+            <td>
+              # for tag in song_db.tags
+                <span class="label label-default">{{tag}}</span>
+              # endfor
+            </td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Artist</th>
+            <td class="col-xs-11">{{song_db.artist or ''}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Lyrics</th>
+            <td class="col-xs-11">{{song_db.lyrics or ''}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+# endblock
