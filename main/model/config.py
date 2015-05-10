@@ -11,6 +11,7 @@ import util
 
 
 class Config(model.Base, model.ConfigAuth):
+  about_md = ndb.TextProperty(default='', verbose_name='About (Markdown)')
   analytics_id = ndb.StringProperty(default='', verbose_name='Tracking ID')
   announcement_html = ndb.TextProperty(default='', verbose_name='Announcement HTML')
   announcement_type = ndb.StringProperty(default='info', choices=['info', 'warning', 'success', 'danger'])
