@@ -9,25 +9,25 @@ import model
 
 
 class Song(model.Base):
+  rank = ndb.IntegerProperty(default=0)
   name = ndb.StringProperty(required=True)
-  url_name = ndb.StringProperty(required=True)
-  index = ndb.IntegerProperty(default=0)
-  year = ndb.IntegerProperty(default=0)
+  album_key = ndb.KeyProperty(kind=model.Album, verbose_name='Album')
+  writer_key = ndb.KeyProperty(kind=model.Member)
+  release_date = ndb.DateProperty(default=0, required=True)
   sound_cloud_id = ndb.StringProperty(verbose_name='SoundCloud ID')
   youtube_id = ndb.StringProperty(verbose_name='YouTube ID')
-  imgur_id = ndb.StringProperty(verbose_name='Imgur ID')
   tags = ndb.StringProperty(repeated=True)
   artist = ndb.StringProperty()
   lyrics = ndb.TextProperty(indexed=False)
 
   FIELDS = {
+      'rank': fields.Integer,
       'name': fields.String,
-      'url_name': fields.String,
-      'index': fields.Integer,
-      'year': fields.Integer,
+      'album_key': fields.Key,
+      'writer_key': fields.Key,
+      'release_date': fields.DateTime,
       'sound_cloud_id': fields.String,
       'youtube_id': fields.String,
-      'imgur_id': fields.String,
       'tags': fields.List(fields.String),
       'artist': fields.String,
       'lyrics': fields.String,

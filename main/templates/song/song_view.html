@@ -15,20 +15,24 @@
       <table class="table table-bordered table-striped">
         <tbody>
           <tr>
+            <th class="text-nowrap col-xs-1">Rank</th>
+            <td class="col-xs-11">{{song_db.rank or ''}}</td>
+          </tr>
+          <tr>
             <th class="text-nowrap col-xs-1">Name</th>
             <td class="col-xs-11">{{song_db.name or ''}}</td>
           </tr>
           <tr>
-            <th class="text-nowrap col-xs-1">Url Name</th>
-            <td class="col-xs-11">{{song_db.url_name or ''}}</td>
+            <th class="text-nowrap col-xs-1">Album</th>
+            <td class="col-xs-11">{{song_db.album_key.get().name if song_db.album_key else ''}}</td>
           </tr>
           <tr>
-            <th class="text-nowrap col-xs-1">Index</th>
-            <td class="col-xs-11">{{song_db.index or ''}}</td>
+            <th class="text-nowrap col-xs-1">Writer Key</th>
+            <td class="col-xs-11">{{song_db.writer_key.get().name if song_db.writer_key else ''}}</td>
           </tr>
           <tr>
-            <th class="text-nowrap col-xs-1">Year</th>
-            <td class="col-xs-11">{{song_db.year or ''}}</td>
+            <th class="text-nowrap col-xs-1">Release Date</th>
+            <td class="col-xs-11">{{song_db.release_date or ''}}</td>
           </tr>
           <tr>
             <th class="text-nowrap col-xs-1">SoundCloud ID</th>
@@ -37,10 +41,6 @@
           <tr>
             <th class="text-nowrap col-xs-1">YouTube ID</th>
             <td class="col-xs-11">{{song_db.youtube_id or ''}}</td>
-          </tr>
-          <tr>
-            <th class="text-nowrap col-xs-1">Imgur ID</th>
-            <td class="col-xs-11">{{song_db.imgur_id or ''}}</td>
           </tr>
           <tr>
             <th class="text-nowrap col-xs-1">Tags</th>

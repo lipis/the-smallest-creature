@@ -17,6 +17,8 @@
 
   <div class="row text-center">
     {{admin_link('User List', 'group', url_for('user_list', order='-modified', active=True))}}
+    {{admin_link('Member List', 'user-md', url_for('admin_member_list'))}}
+    {{admin_link('Album List', 'diamond', url_for('admin_album_list'))}}
     {{admin_link('Song List', 'music', url_for('admin_song_list'))}}
   </div>
 

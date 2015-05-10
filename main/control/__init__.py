@@ -8,4 +8,6 @@ from .feedback import *
 from .profile import *
 from .test import *
 from .welcome import *
+from .member import *
+from .album import *
 from .song import *

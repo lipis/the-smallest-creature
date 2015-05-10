@@ -13,6 +13,38 @@ from main import app
 
 
 ###############################################################################
+# List
+###############################################################################
+@app.route('/song/')
+def song_list():
+  song_dbs, song_cursor = model.Song.get_dbs()
+  return flask.render_template(
+      'song/song_list.html',
+      html_class='song-list',
+      title='Song List',
+      song_dbs=song_dbs,
+      next_url=util.generate_next_url(song_cursor),
+    )
+
+
+###############################################################################
+# View
+###############################################################################
+@app.route('/song/<int:song_id>/')
+def song_view(song_id):
+  song_db = model.Song.get_by_id(song_id)
+  if not song_db:
+    flask.abort(404)
+
+  return flask.render_template(
+      'song/song_view.html',
+      html_class='song-view',
+      title=song_db.name,
+      song_db=song_db,
+    )
+
+
+###############################################################################
 # Admin List
 ###############################################################################
 @app.route('/admin/song/')
@@ -35,23 +67,28 @@ def admin_song_list():
 # Admin Update
 ###############################################################################
 class SongUpdateAdminForm(wtf.Form):
+  rank = wtforms.IntegerField(
+      model.Song.rank._verbose_name,
+      [wtforms.validators.optional()],
+    )
   name = wtforms.StringField(
       model.Song.name._verbose_name,
       [wtforms.validators.required()],
       filters=[util.strip_filter],
     )
-  url_name = wtforms.StringField(
-      model.Song.url_name._verbose_name,
+  album_key = wtforms.SelectField(
+      model.Song.album_key._verbose_name,
+      [wtforms.validators.optional()],
+      choices=[],
+    )
+  writer_key = wtforms.SelectField(
+      model.Song.writer_key._verbose_name,
+      [wtforms.validators.optional()],
+      choices=[],
+    )
+  release_date = wtforms.DateField(
+      model.Song.release_date._verbose_name,
       [wtforms.validators.required()],
-      filters=[util.strip_filter],
-    )
-  index = wtforms.IntegerField(
-      model.Song.index._verbose_name,
-      [wtforms.validators.optional()],
-    )
-  year = wtforms.IntegerField(
-      model.Song.year._verbose_name,
-      [wtforms.validators.optional()],
     )
   sound_cloud_id = wtforms.StringField(
       model.Song.sound_cloud_id._verbose_name,
@@ -60,11 +97,6 @@ class SongUpdateAdminForm(wtf.Form):
     )
   youtube_id = wtforms.StringField(
       model.Song.youtube_id._verbose_name,
-      [wtforms.validators.optional()],
-      filters=[util.strip_filter],
-    )
-  imgur_id = wtforms.StringField(
-      model.Song.imgur_id._verbose_name,
       [wtforms.validators.optional()],
       filters=[util.strip_filter],
     )
@@ -97,10 +129,18 @@ def admin_song_update(song_id=0):
 
   form = SongUpdateAdminForm(obj=song_db)
 
+  album_dbs, album_cursor = model.Album.get_dbs()
+  member_dbs, member_cursor = model.Member.get_dbs()
+  form.album_key.choices = [('', u'-')] + [(c.key.urlsafe(), c.name) for c in album_dbs]
+  form.writer_key.choices = [('', u'-')] + [(c.key.urlsafe(), c.name) for c in member_dbs]
   if flask.request.method == 'GET' and not form.errors:
+    form.album_key.data = song_db.album_key.urlsafe() if song_db.album_key else None
+    form.writer_key.data = song_db.writer_key.urlsafe() if song_db.writer_key else None
     form.tags.data = ' '.join(form.tags.data)
   
   if form.validate_on_submit():
+    form.album_key.data = ndb.Key(urlsafe=form.album_key.data) if form.album_key.data else None
+    form.writer_key.data = ndb.Key(urlsafe=form.writer_key.data) if form.writer_key.data else None
     form.tags.data = util.parse_tags(form.tags.data)
     form.populate_obj(song_db)
     song_db.put()

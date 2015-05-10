@@ -10,13 +10,21 @@
       <a class="navbar-brand" href="{{url_for('welcome')}}">{{config.CONFIG_DB.brand_name}}</a>
     </div>
     <nav class="collapse navbar-collapse">
-      <ul class="nav navbar-nav" role="menu">
+      <ul class="nav navbar-nav">
+        <li class="{{'active' if html_class == 'member'}}">
+          <a href="{{url_for('member_list')}}"><span class="fa fa-fw fa-user-md"></span> Member List</a>
+        </li>
+        <li class="{{'active' if html_class == 'album'}}">
+          <a href="{{url_for('album_list')}}"><span class="fa fa-fw fa-diamond"></span> Album List</a>
+        </li>
+        <li class="{{'active' if html_class == 'song'}}">
+          <a href="{{url_for('song_list')}}"><span class="fa fa-fw fa-music"></span> Song List</a>
+        </li>
         # include 'bit/contact_menu.html'
       </ul>
       <ul class="nav navbar-nav navbar-right" role="menu">
         # include 'bit/user_menu.html'
       </ul>
-      <p class="navbar-text text-muted">(This toolbar is only visible to admins)</p>
     </nav>
   </div>
 </header>

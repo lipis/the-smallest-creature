@@ -6,10 +6,10 @@
 # block content
   <div class="page-header">
     <h1>
-      # if song_db.key
-        {{utils.back_link('Back', 'song_view', song_id=song_db.key.id())}}
+      # if album_db.key
+        {{utils.back_link('Back', 'album_view', album_id=album_db.key.id())}}
       # else
-        {{utils.back_link('Back', 'song_list')}}
+        {{utils.back_link('Back', 'album_list')}}
       # endif
       {{title}}
     </h1>
@@ -18,18 +18,11 @@
     <div class="col-md-4 col-sm-6">
       <form method="POST" action="." novalidate>
         {{form.csrf_token}}
-        {{forms.number_field(form.rank)}}
         {{forms.text_field(form.name, autofocus=True)}}
-        {{forms.select_field(form.album_key)}}
-        {{forms.select_field(form.writer_key)}}
+        {{forms.textarea_field(form.description)}}
         {{forms.date_field(form.release_date)}}
-        {{forms.text_field(form.sound_cloud_id)}}
-        {{forms.text_field(form.youtube_id)}}
-        {{forms.text_field(form.tags)}}
-        {{forms.text_field(form.artist)}}
-        {{forms.textarea_field(form.lyrics)}}
         <button type="submit" class="btn btn-primary btn-block btn-loading" {{forms.data_loading_text()}}>
-          # if song_db.key
+          # if album_db.key
             Update
           # else
             Create
