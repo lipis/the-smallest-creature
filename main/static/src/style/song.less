@@ -1,4 +1,9 @@
 .song {
+  border-bottom: 1px solid @page-header-border-color;
+  padding-bottom: @line-height-computed;
+  &:last-child {
+    border-bottom: none;
+  }
   .song-lyrics {
 
     &.collapsed {

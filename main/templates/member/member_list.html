@@ -11,20 +11,21 @@
   </div>
 
   # for member_db in member_dbs
-    <h2>{{member_db.name}}</h2>
-    <div class="row">
-      <div class="col-sm-3 col-sm-push-9">
-        # if loop.first
-          <img class="img-responsive img-thumbnail" src="http://www.fillmurray.com/160/192" alt="{{member_db.name}} photo">
-        # else
-          <img class="img-responsive img-thumbnail" src="http://www.fillmurray.com/160/190" alt="{{member_db.name}} photo">
-        # endif
+    <section class="member">
+      <h2>{{member_db.name}}</h2>
+      <div class="row">
+        <div class="col-sm-3 col-sm-push-9">
+          # if loop.first
+            <img class="img-responsive img-thumbnail" src="http://www.fillmurray.com/160/192" alt="{{member_db.name}} photo">
+          # else
+            <img class="img-responsive img-thumbnail" src="http://www.fillmurray.com/160/190" alt="{{member_db.name}} photo">
+          # endif
+        </div>
+        <div class="col-sm-9 col-sm-pull-3">
+          {{utils.render_md(member_db.about, 'member-about')}}
+        </div>
       </div>
-      <div class="col-sm-9 col-sm-pull-3">
-        {{utils.render_md(member_db.about, 'member-about')}}
-      </div>
-    </div>
-
+    </section>
   # endfor
 
   {{utils.next_link(next_url)}}
