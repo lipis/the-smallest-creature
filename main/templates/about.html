@@ -1,9 +1,10 @@
 # extends 'base.html'
+# import 'macro/utils.html' as utils
 
 # block content
   <div class="page-header">
     <h1>{{title}} {{config.CONFIG_DB.brand_name}}</h1>
   </div>
 
-  Hello, world!
+  {{utils.render_md(config.CONFIG_DB.about_md)}}
 # endblock

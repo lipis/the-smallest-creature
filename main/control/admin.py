@@ -119,3 +119,33 @@ def admin_auth():
       form=form,
       api_url=flask.url_for('api.config'),
     )
+
+
+###############################################################################
+# Config Stuff
+###############################################################################
+class ConfigAboutForm(wtf.Form):
+  about_md = wtforms.TextAreaField(model.Config.about_md._verbose_name, filters=[util.strip_filter])
+
+
+@app.route('/admin/about/', methods=['GET', 'POST'])
+@auth.admin_required
+def admin_about():
+  config_db = model.Config.get_master_db()
+  form = ConfigAboutForm(obj=config_db)
+  if form.validate_on_submit():
+    form.populate_obj(config_db)
+    config_db.put()
+    reload(config)
+    app.config.update(CONFIG_DB=config_db)
+    return flask.redirect(flask.url_for('admin'))
+
+  return flask.render_template(
+      'admin/admin_about.html',
+      title='About',
+      html_class='admin-about',
+      form=form,
+      api_url=flask.url_for('api.config'),
+    )
+
+
