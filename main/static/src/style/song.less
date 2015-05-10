@@ -1,0 +1,21 @@
+.song {
+  .song-lyrics {
+
+    &.collapsed {
+      @lyrics-height: 128px;
+      @gradient: 32px;
+      max-height: @lyrics-height;
+      overflow: hidden;
+      position: relative;
+      &::before {
+        #gradient > .vertical(transparent, #fff);
+        content: '';
+        position: absolute;
+        height: @gradient;
+        width: 100%;
+        top: @lyrics-height - @gradient;
+        pointer-events: none;
+      }
+    }
+  }
+}

@@ -17,11 +17,11 @@ from main import app
 ###############################################################################
 @app.route('/song/')
 def song_list():
-  song_dbs, song_cursor = model.Song.get_dbs()
+  song_dbs, song_cursor = model.Song.get_dbs(order='rank')
   return flask.render_template(
       'song/song_list.html',
       html_class='song-list',
-      title='Song List',
+      title='Songs & Lyrics',
       song_dbs=song_dbs,
       next_url=util.generate_next_url(song_cursor),
     )
@@ -137,7 +137,7 @@ def admin_song_update(song_id=0):
     form.album_key.data = song_db.album_key.urlsafe() if song_db.album_key else None
     form.writer_key.data = song_db.writer_key.urlsafe() if song_db.writer_key else None
     form.tags.data = ' '.join(form.tags.data)
-  
+
   if form.validate_on_submit():
     form.album_key.data = ndb.Key(urlsafe=form.album_key.data) if form.album_key.data else None
     form.writer_key.data = ndb.Key(urlsafe=form.writer_key.data) if form.writer_key.data else None

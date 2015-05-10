@@ -1,3 +1,18 @@
+<div class="main-header">
+  <a href="{{url_for('about')}}"><img class="logo" src="/p/img/logo.svg" alt="{{config.CONFIG_DB.brand_name}} logo"></a>
+  <ul class="main-menu">
+    <li class="{{'active' if html_class == 'about'}}">
+      <a href="{{url_for('about')}}">About</a>
+    </li>
+    <li class="{{'active' if html_class == 'member-list'}}">
+      <a href="{{url_for('member_list')}}">Bio</a>
+    </li>
+    <li class="{{'active' if html_class == 'song-list'}}">
+      <a href="{{url_for('song_list')}}">Music</a>
+    </li>
+  </ul>
+</div>
+
 <div class="hero">
-  <img class="cover" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}}">
+  <img class="cover" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}} cover">
 </div>

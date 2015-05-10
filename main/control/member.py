@@ -15,13 +15,13 @@ from main import app
 ###############################################################################
 # List
 ###############################################################################
-@app.route('/member/')
+@app.route('/bio/')
 def member_list():
-  member_dbs, member_cursor = model.Member.get_dbs()
+  member_dbs, member_cursor = model.Member.get_dbs(order='name')
   return flask.render_template(
       'member/member_list.html',
       html_class='member-list',
-      title='Member List',
+      title='Bio',
       member_dbs=member_dbs,
       next_url=util.generate_next_url(member_cursor),
     )

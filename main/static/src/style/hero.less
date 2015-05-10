@@ -1,9 +1,33 @@
+.logo {
+  width: 128px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.main-menu {
+  .list-inline;
+  .text-uppercase;
+  display: inline-block;
+  margin-left: @line-height-computed;
+  font-size: @font-size-large;
+  li {
+    border-right: 1px solid @page-header-border-color;
+    padding-right: 12px;
+    margin: 0;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  .active {
+    font-weight: 600;
+  }
+}
+
 .hero {
   .text-center;
   .cover {
     max-width: 100%;
   }
-
 }
 
 .page-header {
