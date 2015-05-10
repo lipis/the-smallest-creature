@@ -2,18 +2,16 @@
   .song-lyrics {
 
     &.collapsed {
-      @lyrics-height: 128px;
-      @gradient: 32px;
-      max-height: @lyrics-height;
+      max-height: @song-lyrics-height;
       overflow: hidden;
       position: relative;
       &::before {
         #gradient > .vertical(transparent, #fff);
         content: '';
         position: absolute;
-        height: @gradient;
         width: 100%;
-        top: @lyrics-height - @gradient;
+        height: @song-lyrics-shadow;
+        top: @song-lyrics-height - @song-lyrics-shadow;
         pointer-events: none;
       }
     }
