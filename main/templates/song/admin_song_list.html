@@ -20,7 +20,7 @@
           <th class="col-xs-1 text-right">{{utils.order_by_link('rank', 'Rank')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('name', 'Name')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('album_key', 'Album')}}</th>
-          <th class="col-xs-1">{{utils.order_by_link('sound_cloud_id', 'SoundCloud ID')}}</th>
+          <th class="col-xs-1">{{utils.order_by_link('soundcloud_id', 'SoundCloud ID')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('tags', 'Tags')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('modified', 'Modified')}}<br><small>{{utils.order_by_link('created', 'Created')}}</small></th>
         </tr>
@@ -31,7 +31,7 @@
             <td class="text-right">{{song_db.rank}}</td>
             <td>{{song_db.name}}</td>
             <td>{{song_db.album_key.get().name if song_db.album_key else ''}}</td>
-            <td>{{song_db.sound_cloud_id}}</td>
+            <td>{{song_db.soundcloud_id}}</td>
             <td>
               # for tag in song_db.tags
                 <span class="label label-default">{{tag}}</span>

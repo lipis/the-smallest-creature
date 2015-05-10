@@ -12,9 +12,18 @@
   # for song_db in song_dbs
     <section class="song">
       <h2>{{song_db.name}}</h2>
-
-      <div class="song-lyrics collapsed">
-        {{song_db.lyrics.replace('\n', '<br>')|safe}}
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="song-lyrics collapsed">
+            {{song_db.lyrics.replace('\n', '<br>')|safe}}
+          </div>
+        </div>
+        <div class="col-sm-8">
+          # if song_db.soundcloud_id
+            <iframe class="soundcloud-iframe" scrolling="no" frameborder="no"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{song_db.soundcloud_id}}&amp;color=f50&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=false"></iframe>
+          # endif
+        </div>
       </div>
     </section>
   # endfor
