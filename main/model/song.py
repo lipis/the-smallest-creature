@@ -12,7 +12,7 @@ class Song(model.Base):
   rank = ndb.IntegerProperty(default=0)
   name = ndb.StringProperty(required=True)
   album_key = ndb.KeyProperty(kind=model.Album, verbose_name='Album')
-  writer_key = ndb.KeyProperty(kind=model.Member)
+  writer_key = ndb.KeyProperty(kind=model.Member, verbose_name='Written By')
   release_date = ndb.DateProperty(required=True)
   sound_cloud_id = ndb.StringProperty(verbose_name='SoundCloud ID')
   youtube_id = ndb.StringProperty(verbose_name='YouTube ID')
