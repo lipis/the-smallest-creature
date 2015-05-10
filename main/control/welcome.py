@@ -15,6 +15,14 @@ def welcome():
   return flask.render_template('welcome.html', html_class='welcome')
 
 
+@app.route('/about/')
+def about():
+  return flask.render_template(
+      'about.html',
+      html_class='about',
+      title='About'
+    )
+
 ###############################################################################
 # Sitemap stuff
 ###############################################################################
