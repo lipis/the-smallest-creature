@@ -15,11 +15,15 @@
   </head>
 
   <body>
+    # if current_user.admin
+      # include 'bit/header.html'
+    # endif
+
     # block header
     # endblock
     <div class="container">
-      # if current_user.admin
-        # include 'bit/header.html'
+      # if html_class != 'welcome'
+        # include 'bit/hero.html'
       # endif
       # include 'bit/notifications.html'
       # block content
