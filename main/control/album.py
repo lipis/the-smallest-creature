@@ -13,38 +13,6 @@ from main import app
 
 
 ###############################################################################
-# List
-###############################################################################
-@app.route('/album/')
-def album_list():
-  album_dbs, album_cursor = model.Album.get_dbs()
-  return flask.render_template(
-      'album/album_list.html',
-      html_class='album-list',
-      title='Album List',
-      album_dbs=album_dbs,
-      next_url=util.generate_next_url(album_cursor),
-    )
-
-
-###############################################################################
-# View
-###############################################################################
-@app.route('/album/<int:album_id>/')
-def album_view(album_id):
-  album_db = model.Album.get_by_id(album_id)
-  if not album_db:
-    flask.abort(404)
-
-  return flask.render_template(
-      'album/album_view.html',
-      html_class='album-view',
-      title=album_db.name,
-      album_db=album_db,
-    )
-
-
-###############################################################################
 # Admin List
 ###############################################################################
 @app.route('/admin/album/')

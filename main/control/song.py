@@ -88,7 +88,7 @@ class SongUpdateAdminForm(wtf.Form):
     )
   release_date = wtforms.DateField(
       model.Song.release_date._verbose_name,
-      [wtforms.validators.required()],
+      [wtforms.validators.optional()],
     )
   sound_cloud_id = wtforms.StringField(
       model.Song.sound_cloud_id._verbose_name,
