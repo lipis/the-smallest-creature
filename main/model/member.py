@@ -10,7 +10,7 @@ import model
 
 class Member(model.Base):
   name = ndb.StringProperty(required=True)
-  about = ndb.TextProperty(required=True)
+  about = ndb.TextProperty(required=True, verbose_name='About (Markdown)')
   joined_date = ndb.DateProperty()
 
   FIELDS = {

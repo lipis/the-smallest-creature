@@ -10,7 +10,7 @@ import model
 
 class Album(model.Base):
   name = ndb.StringProperty(required=True)
-  description = ndb.StringProperty()
+  description = ndb.StringProperty(verbose_name='Description (Markdown)')
   release_date = ndb.DateProperty(required=True)
 
   FIELDS = {

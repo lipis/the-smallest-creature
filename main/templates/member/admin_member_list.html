@@ -18,7 +18,6 @@
       <thead>
         <tr class="text-nowrap">
           <th class="col-xs-1">{{utils.order_by_link('name', 'Name')}}</th>
-          <th class="col-xs-1">{{utils.order_by_link('about', 'About')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('joined_date', 'Joined Date')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('modified', 'Modified')}}<br><small>{{utils.order_by_link('created', 'Created')}}</small></th>
         </tr>
@@ -27,7 +26,6 @@
         # for member_db in member_dbs
           <tr class="row-link" id="{{member_db.key.urlsafe()}}" data-href="{{url_for('admin_member_update', member_id=member_db.key.id())}}">
             <td>{{member_db.name}}</td>
-            <td>{{member_db.about}}</td>
             <td>{{member_db.joined_date}}</td>
             <td>
               <time datetime="{{member_db.modified}}">
