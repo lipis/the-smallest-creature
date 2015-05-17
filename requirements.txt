@@ -5,5 +5,5 @@ flask-restful==0.3.2
 flask-wtf==0.11
 flask==0.10.1
 jinja2-markdown
-markdown
+markdown==2.6.2
 unidecode==0.4.17
