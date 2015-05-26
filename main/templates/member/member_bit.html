@@ -1,0 +1,16 @@
+# import 'macro/utils.html' as utils
+
+<div class="page-header">
+  <h1>The People</h1>
+</div>
+
+<div class="row">
+
+  # for member_db in member_dbs
+    <div class="col-sm-4">
+      <img class="img-responsive img-thumbnail" src="http://www.fillmurray.com/320/{{320 + loop.index}}" alt="{{member_db.name}} photo">
+      <h2>{{member_db.name}}</h2>
+      {{utils.render_md(member_db.about, 'member-about')}}
+    </div>
+  # endfor
+</div>

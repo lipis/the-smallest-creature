@@ -17,7 +17,7 @@ from main import app
 ###############################################################################
 @app.route('/bio/')
 def member_list():
-  member_dbs, member_cursor = model.Member.get_dbs(order='name')
+  member_dbs, member_cursor = model.Member.get_dbs(order='joined_date')
   return flask.render_template(
       'member/member_list.html',
       html_class='member-list',

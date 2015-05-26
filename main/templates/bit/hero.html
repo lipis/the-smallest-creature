@@ -1,9 +1,6 @@
 <div class="main-header">
   <a href="{{url_for('about')}}"><img class="logo" src="/p/img/logo.svg" alt="{{config.CONFIG_DB.brand_name}} logo"></a>
   <ul class="main-menu">
-    <li class="{{'active' if html_class == 'about'}}">
-      <a href="{{url_for('about')}}">About</a>
-    </li>
     <li class="{{'active' if html_class == 'member-list'}}">
       <a href="{{url_for('member_list')}}">Bio</a>
     </li>

@@ -3,6 +3,7 @@
 import flask
 
 import config
+import model
 
 from main import app
 
@@ -12,16 +13,16 @@ from main import app
 ###############################################################################
 @app.route('/')
 def welcome():
-  return flask.render_template('welcome.html', html_class='welcome')
+  member_dbs, member_cursor = model.Member.get_dbs(order='name')
+  song_dbs, song_cursor = model.Song.get_dbs(order='rank')
 
-
-@app.route('/about/')
-def about():
   return flask.render_template(
-      'about.html',
-      html_class='about',
-      title='About'
+      'welcome.html',
+      html_class='welcome',
+      member_dbs=member_dbs,
+      song_dbs=song_dbs,
     )
+
 
 ###############################################################################
 # Sitemap stuff
