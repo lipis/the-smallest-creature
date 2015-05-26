@@ -74,7 +74,7 @@ class MemberUpdateAdminForm(wtf.Form):
     )
   about = wtforms.TextAreaField(
       model.Member.about._verbose_name,
-      [wtforms.validators.required()],
+      [wtforms.validators.optional()],
       filters=[util.strip_filter],
     )
   joined_date = wtforms.DateField(
