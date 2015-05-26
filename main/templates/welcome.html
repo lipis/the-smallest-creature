@@ -4,8 +4,8 @@
 # block header
   <div class="jumbotron">
     <div class="container text-center">
-      <img class="logo" src="/p/img/logo.svg" alt="{{config.CONFIG_DB.brand_name}}">
-      <img class="cover" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}}">
+      <img class="logo" src="/p/img/logo.svg" alt="{{config.CONFIG_DB.brand_name}} Logo">
+      <img class="cover" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}} Cover">
       <h1>{{config.CONFIG_DB.announcement_html|safe}}</h1>
     </div>
   </div>
@@ -14,6 +14,13 @@
 # block content
 
   # include 'about.html'
-  # include 'member/member_bit.html'
-  # include 'song/song_bit.html'
+  ## include 'member/member_bit.html'
+  ## include 'song/song_bit.html'
+
+  <div class="row">
+    <div class="col-xs-offset-6 col-xs-6 col-sm-offset-8 col-sm-4">
+      <img class="img-responsive" src="/p/img/creature_headphones.png" alt="{{config.CONFIG_DB.brand_name}} Headphones">
+    </div>
+  </div>
+
 # endblock
