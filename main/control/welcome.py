@@ -13,7 +13,7 @@ from main import app
 ###############################################################################
 @app.route('/')
 def welcome():
-  member_dbs, member_cursor = model.Member.get_dbs(order='name')
+  member_dbs, member_cursor = model.Member.get_dbs(order='joined_date')
   song_dbs, song_cursor = model.Song.get_dbs(order='rank')
 
   return flask.render_template(
