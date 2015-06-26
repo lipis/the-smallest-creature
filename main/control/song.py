@@ -136,7 +136,7 @@ def admin_song_update(song_id=0):
   if flask.request.method == 'GET' and not form.errors:
     form.album_key.data = song_db.album_key.urlsafe() if song_db.album_key else None
     form.writer_key.data = song_db.writer_key.urlsafe() if song_db.writer_key else None
-    form.tags.data = ' '.join(form.tags.data)
+    form.tags.data = config.TAG_SEPARATOR.join(form.tags.data)
 
   if form.validate_on_submit():
     form.album_key.data = ndb.Key(urlsafe=form.album_key.data) if form.album_key.data else None

@@ -11,6 +11,7 @@
         {{forms.text_field(form.name, autofocus=True)}}
         {{forms.textarea_field(form.description)}}
         {{forms.date_field(form.release_date)}}
+        {{forms.text_field(form.tags)}}
         <button type="submit" class="btn btn-primary btn-block btn-loading" {{forms.data_loading_text()}}>
           # if album_db.key
             Update

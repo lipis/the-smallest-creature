@@ -20,6 +20,7 @@
           <th class="col-xs-1">{{utils.order_by_link('name', 'Name')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('description', 'Description (Markdown)')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('release_date', 'Release Date')}}</th>
+          <th class="col-xs-1">{{utils.order_by_link('tags', 'Tags')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('modified', 'Modified')}}<br><small>{{utils.order_by_link('created', 'Created')}}</small></th>
         </tr>
       </thead>
@@ -29,6 +30,11 @@
             <td>{{album_db.name}}</td>
             <td>{{album_db.description}}</td>
             <td>{{album_db.release_date}}</td>
+            <td>
+              # for tag in album_db.tags
+                <span class="label label-default">{{tag}}</span>
+              # endfor
+            </td>
             <td>
               <time datetime="{{album_db.modified}}">
                 {{album_db.modified.strftime('%Y-%m-%d')}}

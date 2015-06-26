@@ -26,6 +26,14 @@
             <th class="text-nowrap col-xs-1">Release Date</th>
             <td class="col-xs-11">{{album_db.release_date or ''}}</td>
           </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">Tags</th>
+            <td>
+              # for tag in album_db.tags
+                <span class="label label-default">{{tag}}</span>
+              # endfor
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

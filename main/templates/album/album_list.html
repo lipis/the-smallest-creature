@@ -16,6 +16,7 @@
           <th class="col-xs-1">{{utils.order_by_link('name', 'Name')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('description', 'Description (Markdown)')}}</th>
           <th class="col-xs-1">{{utils.order_by_link('release_date', 'Release Date')}}</th>
+          <th class="col-xs-1">{{utils.order_by_link('tags', 'Tags')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,11 @@
             <td>{{album_db.name}}</td>
             <td>{{album_db.description}}</td>
             <td>{{album_db.release_date}}</td>
+            <td>
+              # for tag in album_db.tags
+                <span class="label label-default">{{tag}}</span>
+              # endfor
+            </td>
           </tr>
         # endfor
       </tbody>

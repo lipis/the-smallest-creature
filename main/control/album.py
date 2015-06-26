@@ -6,6 +6,7 @@ import flask
 import wtforms
 
 import auth
+import config
 import model
 import util
 
@@ -49,6 +50,10 @@ class AlbumUpdateAdminForm(wtf.Form):
       model.Album.release_date._verbose_name,
       [wtforms.validators.required()],
     )
+  tags = wtforms.StringField(
+      model.Album.tags._verbose_name,
+      [wtforms.validators.optional()],
+    )
 
 
 @app.route('/admin/album/create/', methods=['GET', 'POST'])
@@ -64,7 +69,11 @@ def admin_album_update(album_id=0):
 
   form = AlbumUpdateAdminForm(obj=album_db)
 
+  if flask.request.method == 'GET' and not form.errors:
+    form.tags.data = config.TAG_SEPARATOR.join(form.tags.data)
+  
   if form.validate_on_submit():
+    form.tags.data = util.parse_tags(form.tags.data)
     form.populate_obj(album_db)
     album_db.put()
     return flask.redirect(flask.url_for('admin_album_list', album_id=album_db.key.id()))
