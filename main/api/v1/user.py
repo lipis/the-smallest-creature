@@ -2,8 +2,12 @@
 
 from __future__ import absolute_import
 
-from google.appengine.ext import ndb
+import logging
+
 from flask.ext import restful
+from google.appengine.ext import blobstore
+from google.appengine.ext import deferred
+from google.appengine.ext import ndb
 import flask
 
 from api import helpers
@@ -54,7 +58,7 @@ class UserAPI(restful.Resource):
     user_db = ndb.Key(urlsafe=user_key).get()
     if not user_db:
       helpers.make_not_found_exception('User %s not found' % user_key)
-    user_db.key.delete()
+    delete_user_task(user_db.key)
     return helpers.make_response(user_db, model.User.FIELDS)
 
 
@@ -63,4 +67,28 @@ class UserAPI(restful.Resource):
 ###############################################################################
 @ndb.transactional(xg=True)
 def delete_user_dbs(user_db_keys):
-  ndb.delete_multi(user_db_keys)
+  for user_key in user_db_keys:
+    delete_user_task(user_key)
+
+
+def delete_user_task(user_key, next_cursor=None):
+  resource_dbs, next_cursor = util.get_dbs(
+      model.Resource.query(),
+      user_key=user_key,
+      cursor=next_cursor,
+    )
+  if resource_dbs:
+    for resource_db in resource_dbs:
+      try:
+        blobstore.BlobInfo.get(resource_db.blob_key).delete()
+      except AttributeError:
+        logging.error('Blob %s not found during delete (resource_key: %s)' % (
+            resource_db.blob_key, resource_db.key().urlsafe(),
+          ))
+
+    ndb.delete_multi([resource_db.key for resource_db in resource_dbs])
+
+  if next_cursor:
+    deferred.defer(delete_user_task, user_key, next_cursor)
+  else:
+    user_key.delete()

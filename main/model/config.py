@@ -17,6 +17,7 @@ class Config(model.Base, model.ConfigAuth):
   announcement_type = ndb.StringProperty(default='info', choices=['info', 'warning', 'success', 'danger'])
   anonymous_recaptcha = ndb.BooleanProperty(default=False, verbose_name='Use reCAPTCHA in forms for unauthorized users')
   brand_name = ndb.StringProperty(default=config.APPLICATION_ID)
+  bucket_name = ndb.StringProperty(default=config.DEFAULT_GCS_BUCKET_NAME)
   check_unique_email = ndb.BooleanProperty(default=True, verbose_name='Check for uniqueness of the verified emails')
   email_authentication = ndb.BooleanProperty(default=False, verbose_name='Email authentication for sign in/sign up')
   feedback_email = ndb.StringProperty(default='')
@@ -49,6 +50,7 @@ class Config(model.Base, model.ConfigAuth):
       'announcement_type': fields.String,
       'anonymous_recaptcha': fields.Boolean,
       'brand_name': fields.String,
+      'bucket_name': fields.String,
       'check_unique_email': fields.Boolean,
       'email_authentication': fields.Boolean,
       'feedback_email': fields.String,

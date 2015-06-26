@@ -4,6 +4,7 @@ import copy
 
 from flask.ext import login
 from flask.ext import wtf
+from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 import flask
 import wtforms
@@ -355,4 +356,18 @@ def merge_user_dbs(user_db, deprecated_keys):
     deprecated_db.verified = False
     if not deprecated_db.username.startswith('_'):
       deprecated_db.username = '_%s' % deprecated_db.username
+    deferred.defer(move_resources_task, user_db.key, deprecated_db.key)
   ndb.put_multi(deprecated_dbs)
+
+
+def move_resources_task(user_key, deprecated_key, next_cursor=None):
+  resource_dbs, next_cursor = util.get_dbs(
+      model.Resource.query(),
+      user_key=deprecated_key,
+      cursor=next_cursor,
+    )
+  for resource_db in resource_dbs:
+    resource_db.user_key = user_key
+  ndb.put_multi(resource_dbs)
+  if next_cursor:
+    deferred.defer(move_resources_task, user_key, deprecated_key, next_cursor)

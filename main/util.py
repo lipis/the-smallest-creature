@@ -131,6 +131,15 @@ def uuid():
   return uuid4().hex
 
 
+def size_human(nbytes):
+  for suffix in ['B', 'KB', 'MB', 'GB', 'TB']:
+    if nbytes < 1000:
+      if suffix == 'B':
+        return '%.0f %s' % (nbytes, suffix)
+      return '%.1f %s' % (nbytes, suffix)
+    nbytes /= 1024.0
+
+
 _slugify_strip_re = re.compile(r'[^\w\s-]')
 _slugify_hyphenate_re = re.compile(r'[-\s]+')
 

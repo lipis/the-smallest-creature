@@ -2,7 +2,7 @@
 
 from .config import *
 from .user import *
-from .song import *
+from .resource import *
 from .member import *
 from .album import *
 from .song import *

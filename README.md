@@ -1,14 +1,15 @@
-gae-init
-========
+gae-init-upload
+===============
 
-**gae-init** is the easiest way to kick start new applications on Google
-App Engine using Flask, Bootstrap and tons of other cool features.
+**gae-init-upload** is the easiest way to kick start new applications on Google
+App Engine using Flask, Bootstrap, Google Cloud Storage and tons of other cool
+features.
 
 Read more in the [docs][], where you can find a complete [feature list][],
 a detailed [tutorial][] on how to build a phonebook application and more..
 
 The latest version is always accessible from
-[http://gae-init.appspot.com](http://gae-init.appspot.com)
+[http://upload.gae-init.appspot.com](http://upload.gae-init.appspot.com)
 
 Running the Development Environment
 -----------------------------------
@@ -98,6 +99,7 @@ Author
 [flask-wtf]: https://flask-wtf.readthedocs.org
 [flask]: http://flask.pocoo.org/
 [font awesome]: http://fortawesome.github.com/Font-Awesome/
+[gae-init]: http://gae-init.appspot.com
 [gmist]: https://github.com/gmist
 [google app engine sdk for python]: https://developers.google.com/appengine/downloads
 [google app engine]: https://developers.google.com/appengine/

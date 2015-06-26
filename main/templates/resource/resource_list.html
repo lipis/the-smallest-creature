@@ -1,0 +1,62 @@
+# extends 'base.html'
+# import 'macro/utils.html' as utils
+
+# block content
+  <div class="page-header">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+
+  <div class="alert alert-warning alert-dismissable {{'hide' if resource_dbs | count > 0}}">
+    There are no resources
+  </div>
+
+  <table class="table table-bordered table-hover {{'hide' if resource_dbs | count == 0}}">
+    <thead>
+      <tr>
+        <th class="col-xs-5">{{utils.order_by_link('name', 'Name')}}</th>
+        <th class="col-xs-3 hidden-xs">{{utils.order_by_link('content_type', 'Content Type')}}</th>
+        <th class="col-xs-2 hidden-xs">{{utils.order_by_link('created', 'Created')}}</th>
+        <th class="col-xs-1 text-right">{{utils.order_by_link('size', 'Size')}}</th>
+        <th class="col-xs-1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      # for resource_db in resource_dbs
+        <tr id="{{resource_db.key.urlsafe()}}">
+          <td class="ellipsis">
+            <a href="{{url_for('resource_view', resource_id=resource_db.key.id())}}">
+              {{resource_db.name}}
+            </a>
+          </td>
+          <td class="hidden-xs">{{resource_db.content_type}}</td>
+          <td class="hidden-xs">
+            <time datetime="{{resource_db.created}}">
+              {{resource_db.created.strftime('%Y-%m-%d')}}
+            </time>
+          </td>
+          <td class="text-right text-nowrap">
+            {{resource_db.size_human}}
+          </td>
+          <td class="text-nowrap">
+            <a class="btn btn-xs btn-primary" href="{{url_for('resource_update', resource_id=resource_db.key.id())}}">
+              <i class="fa fa-fw fa-edit"></i>
+            </a>
+            <a class="btn btn-xs btn-success" href="{{url_for('resource_download', resource_id=resource_db.key.id())}}">
+              <i class="fa fa-fw fa-cloud-download"></i>
+            </a>
+            <button class="btn btn-xs btn-danger btn-delete"
+                data-api-url="{{url_for('api.resource', key=resource_db.key.urlsafe())}}"
+                data-target="#{{resource_db.key.urlsafe()}}"
+              >
+              <i class="fa fa-fw fa-trash-o"></i>
+            </button>
+          </td>
+        </tr>
+      # endfor
+    </tbody>
+  </table>
+
+  {{utils.next_link(next_url)}}
+# endblock

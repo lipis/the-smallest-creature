@@ -12,6 +12,7 @@ try:
   # side files (*.less, *.coffee, *.js) and is not aware of the GAE
   from google.appengine.api import app_identity
   APPLICATION_ID = app_identity.get_application_id()
+  DEFAULT_GCS_BUCKET_NAME = app_identity.get_default_gcs_bucket_name()
 except (ImportError, AttributeError):
   pass
 else:
