@@ -10,13 +10,15 @@ import model
 
 class Member(model.Base):
   name = ndb.StringProperty(required=True)
-  about = ndb.TextProperty(required=True, verbose_name='About (Markdown)')
+  image_url = ndb.StringProperty(default='', verbose_name='Image URL')
   joined_date = ndb.DateProperty()
+  about = ndb.TextProperty(required=True, verbose_name='About (Markdown)')
 
   FIELDS = {
       'name': fields.String,
-      'about': fields.String,
+      'image_url': fields.String,
       'joined_date': fields.DateTime,
+      'about': fields.String,
     }
 
   FIELDS.update(model.Base.FIELDS)

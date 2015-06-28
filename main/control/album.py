@@ -76,7 +76,7 @@ def admin_album_update(album_id=0):
     form.tags.data = util.parse_tags(form.tags.data)
     form.populate_obj(album_db)
     album_db.put()
-    return flask.redirect(flask.url_for('admin_album_list', album_id=album_db.key.id()))
+    return flask.redirect(flask.url_for('admin_album_list', order='-modified'))
 
   return flask.render_template(
       'album/admin_album_update.html',

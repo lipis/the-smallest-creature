@@ -16,15 +16,19 @@
         <tbody>
           <tr>
             <th class="text-nowrap col-xs-1">Name</th>
-            <td class="col-xs-11">{{member_db.name or ''}}</td>
+            <td class="col-xs-11">{{member_db.name}}</td>
           </tr>
           <tr>
-            <th class="text-nowrap col-xs-1">About (Markdown)</th>
-            <td class="col-xs-11">{{member_db.about or ''}}</td>
+            <th class="text-nowrap col-xs-1">Image URL</th>
+            <td class="col-xs-11">{{member_db.image_url}}</td>
           </tr>
           <tr>
             <th class="text-nowrap col-xs-1">Joined Date</th>
-            <td class="col-xs-11">{{member_db.joined_date or ''}}</td>
+            <td class="col-xs-11">{{member_db.joined_date}}</td>
+          </tr>
+          <tr>
+            <th class="text-nowrap col-xs-1">About (Markdown)</th>
+            <td class="col-xs-11">{{member_db.about}}</td>
           </tr>
         </tbody>
       </table>

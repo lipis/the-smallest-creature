@@ -72,6 +72,11 @@ class MemberUpdateAdminForm(wtf.Form):
       [wtforms.validators.required()],
       filters=[util.strip_filter],
     )
+  image_url = wtforms.StringField(
+      model.Member.image_url._verbose_name,
+      [wtforms.validators.optional()],
+      filters=[util.strip_filter],
+    )
   about = wtforms.TextAreaField(
       model.Member.about._verbose_name,
       [wtforms.validators.optional()],

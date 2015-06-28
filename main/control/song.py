@@ -144,7 +144,7 @@ def admin_song_update(song_id=0):
     form.tags.data = util.parse_tags(form.tags.data)
     form.populate_obj(song_db)
     song_db.put()
-    return flask.redirect(flask.url_for('admin_song_list', song_id=song_db.key.id()))
+    return flask.redirect(flask.url_for('admin_song_list', order='-modified'))
 
   return flask.render_template(
       'song/admin_song_update.html',
