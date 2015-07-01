@@ -8,7 +8,7 @@
 
   # for member_db in member_dbs
     <div class="col-sm-4">
-      <img class="img-responsive img-thumbnail member-photo" src="http://www.fillmurray.com/480/{{478 + loop.index0}}" alt="{{member_db.name}} photo">
+      <img class="img-responsive img-thumbnail member-photo" src="{{member_db.image_url}}=s512-c" alt="{{member_db.name}} photo">
       <h2>{{member_db.name}}</h2>
       {{utils.render_md(member_db.about, 'member-about')}}
     </div>

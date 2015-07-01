@@ -10,7 +10,7 @@ import model
 
 class Member(model.Base):
   name = ndb.StringProperty(required=True)
-  image_url = ndb.StringProperty(default='', verbose_name='Image URL')
+  image_url = ndb.StringProperty(default='http://www.fillmurray.com/512/512', verbose_name='Image URL')
   joined_date = ndb.DateProperty()
   about = ndb.TextProperty(required=True, verbose_name='About (Markdown)')
 
