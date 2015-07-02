@@ -15,6 +15,15 @@
   </head>
 
   <body>
+    # if 'welcome' not in html_class
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3"><img class="logo img-responsive" src="/p/img/logo.svg" alt="{{config.CONFIG_DB.brand_name}} Logo"></div>
+          <div class="col-xs-9"><img class="cover img-responsive" src="/p/img/cover.png" alt="{{config.CONFIG_DB.brand_name}} Cover"></div>
+        </div>
+      </div>
+    # endif
+
     # if current_user.admin
       # include 'bit/header.html'
     # endif
